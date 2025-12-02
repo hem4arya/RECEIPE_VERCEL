@@ -1,0 +1,12 @@
+{
+  "name": "recipe-finder",
+  "version": "1.0.0",
+  "description": "A premium recipe finder application",
+  "scripts": {
+    "start": "serve .",
+    "dev": "serve ."
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+}

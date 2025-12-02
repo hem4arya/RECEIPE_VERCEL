@@ -1,99 +1,224 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap");
+
+:root {
+  --primary-color: #2d6a4f;
+  --secondary-color: #d8f3dc;
+  --accent-color: #e07a5f;
+  --bg-color: #f7f9f9;
+  --text-color: #1b4332;
+  --card-bg: #ffffff;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.15);
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Lato", sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom right, #9ccc65, #558b2f);
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    margin: 0;
-    overflow-x: hidden;  /* Prevent horizontal scrolling */
-    will-change: scroll-position, transform;
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
 }
 
+/* Hero Section */
+.recipe-hero {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.recipe-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recipe-hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.6)
+  );
+}
+
+.hero-content {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 90%;
+  max-width: 1000px;
+  z-index: 2;
+  color: white;
+}
+
+.hero-content h1 {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Back Button */
+#backButton {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--primary-color);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#backButton:hover {
+  transform: translateY(-2px);
+  background: white;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Content Container */
 #recipeContainer {
-    max-width: 600px;
-    margin: auto;
-    background: #ffffff;
-    color: #333;
+  max-width: 1000px;
+  margin: -40px auto 40px;
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  z-index: 5;
+}
+
+/* Metadata */
+.recipe-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #eee;
+}
+
+.meta-item {
+  text-align: center;
+}
+
+.meta-label {
+  display: block;
+  font-size: 0.85rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.meta-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* Ingredients & Instructions */
+.recipe-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 50px;
+}
+
+h2 {
+  font-family: var(--font-heading);
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+/* Ingredients List */
+#ingredientsList {
+  list-style: none;
+  padding: 0;
+}
+
+#ingredientsList li {
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+}
+
+#ingredientsList li::before {
+  content: "•";
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  margin-right: 10px;
+  line-height: 1;
+}
+
+/* Instructions List */
+#instructionsList {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+}
+
+#instructionsList li {
+  position: relative;
+  padding-left: 50px;
+  margin-bottom: 25px;
+}
+
+#instructionsList li::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 35px;
+  height: 35px;
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 35px;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .recipe-details-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  #recipeContainer {
+    margin-top: 0;
+    border-radius: 0;
     padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease-out;
-    will-change: transform;
-}
+  }
 
-img {
-    width: 100%;
-    max-height: 280px;
-    border-radius: 12px;
-    transition: transform 0.2s ease-out;
-    will-change: transform;
-}
-
-img:hover {
-    transform: scale(1.03);
-}
-
-#backButton {
-    background: #2e7d32;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 16px;
-    transition: background 0.3s ease-in-out, transform 0.2s ease-out;
-    will-change: transform;
-}
-
-#backButton:hover {
-    background: #1b5e20;
-    transform: scale(1.05);
-}
-
-
-#recipeImage{
-    width: fit-content;
-    height: fit-content;
-}
-
-img:hover {
-    transform: scale(1.02);
-}
-
-h1, h2 {
-    color: #2e7d32;
-    transition: color 0.3s ease-in-out;
-}
-
-h1:hover, h2:hover {
-    color: #1b5e20;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-}
-
-ul, ol {
-    text-align: left;
-    padding-left: 20px;
-    line-height: 1.6;
-}
-
-#backButton {
-    background: #2e7d32;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 16px;
-    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
-}
-
-#backButton:hover {
-    background: #1b5e20;
-    transform: scale(1.05);
+  .hero-content h1 {
+    font-size: 2rem;
+  }
 }

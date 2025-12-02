@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Finder</title>
-    <link rel="stylesheet" href="Css/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Finder - Discover Delicious Meals</title>
+    <link rel="stylesheet" href="Css/style.css" />
+  </head>
+  <body>
     <header>
-        <h1>🍃 Recipe Finder 🍗</h1>
-        <input type="text" id="searchBar" placeholder="Search delicious recipes...">
+      <h1>Recipe Finder</h1>
+      <p>Discover your next favorite meal from our curated collection</p>
+      <div class="search-container">
+        <input
+          type="text"
+          id="searchBar"
+          placeholder="Search for recipes, ingredients, or tags..."
+        />
+      </div>
     </header>
 
     <main>
-        <div id="recipesContainer"></div>
+      <div id="recipesContainer"></div>
     </main>
 
     <script src="Script/home.js" type="module"></script>
-</body>
+  </body>
 </html>
